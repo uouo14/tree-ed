@@ -181,7 +181,7 @@ class AVLTreeTests {
 		for (int i : te) {
 			tree.add(i);
 		}
-		System.out.println(tree.tumbarArbol(tree.root, 0));
+		//System.out.println(tree.tumbarArbol(tree.root, 0));
 	}
 	
 	@Test
@@ -202,6 +202,94 @@ class AVLTreeTests {
 //		tree.add(22);
 //		tree.add(24);
 //		System.out.println(tree.tumbarArbol(tree.root, 0));
+	}
+	
+	@Test
+	public void simpleLeft() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {10, 20, 7, 3, 2};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("2\t3\t7\t10\t20", tree.inOrder());
+	}
+	
+	@Test
+	public void simpleRight() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {10, 20, 7, 8, 9};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("7\t8\t9\t10\t20", tree.inOrder());
+	}
+	
+	@Test
+	public void doubleLeft2() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {20, 18, 25, 21, 23};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("18\t20\t21\t23\t25", tree.inOrder());
+	}
+	
+	@Test
+	public void doubleRight2() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {20, 25, 16, 19, 18};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("16\t18\t19\t20\t25", tree.inOrder());
+	}
+	
+	@Test
+	public void erraseSRL() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {50, 30, 60, 70, 20, 40, 10};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("10\t20\t30\t40\t50\t60\t70", tree.inOrder());
+		tree.remove(30);
+		assertEquals("10\t20\t40\t50\t60\t70", tree.inOrder());
+	}
+	
+	@Test
+	public void erraseSRR() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {50, 30, 60, 20, 55, 70, 80};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("20\t30\t50\t55\t60\t70\t80", tree.inOrder());
+		tree.remove(60);
+		assertEquals("20\t30\t50\t55\t70\t80", tree.inOrder());
+	}
+	
+	@Test
+	public void erraseDRR() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {50, 30, 60, 20, 55, 70, 65};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("20\t30\t50\t55\t60\t65\t70", tree.inOrder());
+		tree.remove(60);
+		assertEquals("20\t30\t50\t55\t65\t70", tree.inOrder());
+	}
+	
+	@Test
+	public void erraseDRL() {
+		AVLTree<Integer> tree = new AVLTree<Integer>();
+		int[] te = new int[] {50, 30, 60, 20, 40, 70, 25};
+		for (int i : te) {
+			tree.add(i);
+		}
+		assertEquals("20\t25\t30\t40\t50\t60\t70", tree.inOrder());
+		tree.remove(30);
+		assertEquals("20\t25\t40\t50\t60\t70", tree.inOrder());
 	}
 	
 	private AVLTree<Integer> getSampleTree() {
